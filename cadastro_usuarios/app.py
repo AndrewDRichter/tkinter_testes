@@ -3,7 +3,14 @@ from tkinter import *
 
 class Application:
     def __init__(self, master=None):
+        self.app_version = 1.0
         self.fonte = ("Verdana", "8")
+
+        self.ver_container = Frame(master)
+        self.ver_container.pack()
+
+        self.lbl_version = Label(self.ver_container, text=self.app_version, padx=100)
+        self.lbl_version.pack(side=LEFT)
 
         self.container1 = Frame(master)
         self.container1["pady"] = 10
@@ -206,26 +213,32 @@ class Application:
 
         id = self.txt_id.get()
 
-        self.lbl_msg["text"] = user.selectUser(id)
+        if id == "":
+            self.lbl_msg["text"] = "Digite o id a ser buscado"
+        elif id.isalpha:
+            self.lbl_msg["text"] = "Digite um número"
+        else:
 
-        self.txt_id.delete(0, END)
-        self.txt_id.insert(INSERT, user.id)
+            self.lbl_msg["text"] = user.selectUser(id)
 
-        self.txt_nome.delete(0, END)
-        self.txt_nome.insert(INSERT, user.nome)
+            self.txt_id.delete(0, END)
+            self.txt_id.insert(INSERT, user.id)
 
-        self.txt_telefone.delete(0, END)
-        self.txt_telefone.insert(INSERT,user.telefone)
+            self.txt_nome.delete(0, END)
+            self.txt_nome.insert(INSERT, user.nome)
 
-        self.txt_email.delete(0, END)
-        self.txt_email.insert(INSERT, user.email)
+            self.txt_telefone.delete(0, END)
+            self.txt_telefone.insert(INSERT,user.telefone)
 
-        self.txt_usuario.delete(0, END)
-        self.txt_usuario.insert(INSERT, user.usuario)
+            self.txt_email.delete(0, END)
+            self.txt_email.insert(INSERT, user.email)
 
-        self.txt_senha.delete(0, END)
-        self.txt_senha.insert(INSERT,user.senha)
-        self.txt_confirma_senha.delete(0, END)
+            self.txt_usuario.delete(0, END)
+            self.txt_usuario.insert(INSERT, user.usuario)
+
+            self.txt_senha.delete(0, END)
+            self.txt_senha.insert(INSERT,user.senha)
+            self.txt_confirma_senha.delete(0, END)
 
 
 root = Tk()
