@@ -46,8 +46,13 @@ class Application:
         self.container8.pack()
 
         self.container9 = Frame(master)
-        self.container9["pady"] = 15
+        self.container9["pady"] = 20
+        self.container9["pady"] = 10
         self.container9.pack()
+
+        self.container10 = Frame(master)
+        self.container10["pady"] = 15
+        self.container10.pack()
 
         self.titulo = Label(self.container1, text="Informe os dados :")
         self.titulo["font"] = ("Calibri", "9", "bold")
@@ -111,22 +116,32 @@ class Application:
         self.txt_senha["font"] = self.fonte
         self.txt_senha.pack(side=LEFT)
 
-        self.btn_Insert = Button(self.container8, text="Inserir",
+        self.lbl_confirma_senha= Label(self.container8, text="Senha:",
+        font=self.fonte, width=10)
+        self.lbl_confirma_senha.pack(side=LEFT)
+
+        self.txt_confirma_senha = Entry(self.container8)
+        self.txt_confirma_senha["width"] = 25
+        self.txt_confirma_senha["show"] = "*"
+        self.txt_confirma_senha["font"] = self.fonte
+        self.txt_confirma_senha.pack(side=LEFT)
+
+        self.btn_Insert = Button(self.container9, text="Inserir",
         font=self.fonte, width=12)
         self.btn_Insert["command"] = self.inserirUsuario
         self.btn_Insert.pack (side=LEFT)
 
-        self.btn_Alterar = Button(self.container8, text="Alterar",
+        self.btn_Alterar = Button(self.container9, text="Alterar",
         font=self.fonte, width=12)
         self.btn_Alterar["command"] = self.alterarUsuario
         self.btn_Alterar.pack (side=LEFT)
 
-        self.btn_Excluir = Button(self.container8, text="Excluir",
+        self.btn_Excluir = Button(self.container9, text="Excluir",
         font=self.fonte, width=12)
         self.btn_Excluir["command"] = self.excluirUsuario
         self.btn_Excluir.pack(side=LEFT)
 
-        self.lbl_msg = Label(self.container9, text="")
+        self.lbl_msg = Label(self.container10, text="")
         self.lbl_msg["font"] = ("Verdana", "9", "italic")
         self.lbl_msg.pack()
 
@@ -138,8 +153,10 @@ class Application:
         user.email = self.txt_email.get()
         user.usuario = self.txt_usuario.get()
         user.senha = self.txt_senha.get()
-
-        self.lbl_msg["text"] = user.insertUser()
+        confirma_senha = self.txt_confirma_senha.get()
+        
+        if user.senha == confirma_senha:
+            self.lbl_msg["text"] = user.insertUser()
 
         self.txt_id.delete(0, END)
         self.txt_nome.delete(0, END)
@@ -147,6 +164,7 @@ class Application:
         self.txt_email.delete(0, END)
         self.txt_usuario.delete(0, END)
         self.txt_senha.delete(0, END)
+        self.txt_confirma_senha.delete(0, END)
 
     def alterarUsuario(self):
         user = Usuarios()
@@ -166,6 +184,7 @@ class Application:
         self.txt_email.delete(0, END)
         self.txt_usuario.delete(0, END)
         self.txt_senha.delete(0, END)
+        self.txt_confirma_senha.delete(0, END)
 
     def excluirUsuario(self):
         user = Usuarios()
@@ -180,6 +199,7 @@ class Application:
         self.txt_email.delete(0, END)
         self.txt_usuario.delete(0, END)
         self.txt_senha.delete(0, END)
+        self.txt_confirma_senha.delete(0, END)
 
     def buscarUsuario(self):
         user = Usuarios()
@@ -205,6 +225,7 @@ class Application:
 
         self.txt_senha.delete(0, END)
         self.txt_senha.insert(INSERT,user.senha)
+        self.txt_confirma_senha.delete(0, END)
 
 
 root = Tk()
