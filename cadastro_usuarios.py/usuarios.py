@@ -16,14 +16,15 @@ class Usuarios(object):
         try:
 
             c = banco.conexao.cursor()
-            
-            c.execute("INSERT INTO usuarios (nome, telefone, email, usuario, senha) VALUES(?, ?, ?, ?, ?))", (self.nome, self.telefone, self.email, self.usuario, self.senha))
+
+            c.execute("INSERT INTO usuarios (nome, telefone, email, usuario, senha) VALUES(?, ?, ?, ?, ?)", (self.nome, self.telefone, self.email, self.usuario, self.senha))
 
             banco.conexao.commit()
             c.close()
 
             return "Usuário cadastrado com sucesso!"
-        except:
+        except NameError:
+            print(NameError)
             return "Ocorreu um erro ao cadastrar o usuário!"
         
     def updateUser(self):
@@ -39,7 +40,8 @@ class Usuarios(object):
             c.close()
 
             return "Usuário atualizado com sucesso!"
-        except:
+        except NameError:
+            print(NameError)
             return "Ocorreu um erro na alteração do usuário"
         
     def deleteUser(self):
@@ -55,7 +57,8 @@ class Usuarios(object):
             c.close()
 
             return "Usuário excluído com sucesso!"
-        except:
+        except NameError:
+            print(NameError)
             return "Ocorreu um erro na exclusão do usuário"
         
     def selectUser(self, id):
@@ -77,5 +80,6 @@ class Usuarios(object):
             c.close()
 
             return "Busca feita com sucesso!"
-        except:
+        except NameError:
+            print(NameError)
             return "Ocorreu um erro na busca do usuário"
