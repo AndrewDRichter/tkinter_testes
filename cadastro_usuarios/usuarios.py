@@ -83,3 +83,13 @@ class Usuarios(object):
         except NameError:
             print(NameError)
             return "Ocorreu um erro na busca do usuário"
+        
+    def selectUsers(self):
+        banco = Banco()
+        try:
+            c = banco.conexao.cursor()
+
+            c.execute("SELECT * FROM usuarios")
+
+        except:
+            pass

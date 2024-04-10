@@ -58,8 +58,13 @@ class Application:
         self.container9.pack()
 
         self.container10 = Frame(master)
-        self.container10["pady"] = 15
+        self.container10["padx"] = 100
+        self.container10["pady"] = 10
         self.container10.pack()
+
+        self.container11 = Frame(master)
+        self.container11["pady"] = 15
+        self.container11.pack()
 
         self.titulo = Label(self.container1, text="Informe os dados :")
         self.titulo["font"] = ("Calibri", "9", "bold")
@@ -152,6 +157,9 @@ class Application:
         self.lbl_msg["font"] = ("Verdana", "9", "italic")
         self.lbl_msg.pack()
 
+        self.lbl_lista = Label(self.container11, text="")
+        self.lbl_lista.pack()
+
     def inserirUsuario(self):
         user = Usuarios()
 
@@ -239,6 +247,8 @@ class Application:
             self.txt_senha.delete(0, END)
             self.txt_senha.insert(INSERT,user.senha)
             self.txt_confirma_senha.delete(0, END)
+    def mostrarUsuarios(self):
+        pass
 
 
 root = Tk()
