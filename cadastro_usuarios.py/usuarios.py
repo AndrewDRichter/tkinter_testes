@@ -34,7 +34,7 @@ class Usuarios(object):
 
             c = banco.conexao.cursor()
 
-            c.execute("UPDATE usuarios SET nome = '" + self.nome + "',telefone = '" + self.telefone + "', email = '" + self.email +"', usuario = '" + self.usuario + "', senha = '" + self.senha +"' where id = " + self.id + " ")
+            c.execute("UPDATE usuarios SET nome = ?, telefone = ?, email = ?, usuario = ?, senha = ? WHERE id = ? ", (self.nome, self.telefone, self.email, self.usuario, self.senha, self.id))
 
             banco.conexao.commit()
             c.close()
@@ -51,7 +51,7 @@ class Usuarios(object):
 
             c = banco.conexao.cursor()
 
-            c.execute("DELETE FROM usuarios WHERE id = " + self.id + " ")
+            c.execute("DELETE FROM usuarios WHERE id = ? ", self.id)
 
             banco.conexao.commit()
             c.close()

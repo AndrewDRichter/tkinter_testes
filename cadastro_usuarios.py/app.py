@@ -10,43 +10,43 @@ class Application:
         self.container1.pack()
 
         self.container2 = Frame(master)
-        self.container2["padx"] = 20
+        self.container2["padx"] = 100
         self.container2["pady"] = 5
         self.container2.pack()
 
         self.container3 = Frame(master)
-        self.container3["pady"] = 20
+        self.container3["padx"] = 100
         self.container3["pady"] = 5
         self.container3.pack()
 
         self.container4 = Frame(master)
-        self.container4["pady"] = 20
+        self.container4["padx"] = 100
         self.container4["pady"] = 5
         self.container4.pack()
 
         self.container5 = Frame(master)
-        self.container5["pady"] = 20
+        self.container5["padx"] = 100
         self.container5["pady"] = 5
         self.container5.pack()
 
         self.container6 = Frame(master)
-        self.container6["pady"] = 20
+        self.container6["padx"] = 100
         self.container6["pady"] = 5
         self.container6.pack()
 
         self.container7 = Frame(master)
-        self.container7["pady"] = 20
+        self.container7["padx"] = 100
         self.container7["pady"] = 5
         self.container7.pack()
         self.container5.pack()
 
         self.container8 = Frame(master)
-        self.container8["pady"] = 20
+        self.container8["padx"] = 100
         self.container8["pady"] = 10
         self.container8.pack()
 
         self.container9 = Frame(master)
-        self.container9["pady"] = 20
+        self.container9["padx"] = 100
         self.container9["pady"] = 10
         self.container9.pack()
 
@@ -116,12 +116,12 @@ class Application:
         self.txt_senha["font"] = self.fonte
         self.txt_senha.pack(side=LEFT)
 
-        self.lbl_confirma_senha= Label(self.container8, text="Senha:",
-        font=self.fonte, width=10)
+        self.lbl_confirma_senha= Label(self.container8, text="Confirmar senha:",
+        font=self.fonte, width=15)
         self.lbl_confirma_senha.pack(side=LEFT)
 
         self.txt_confirma_senha = Entry(self.container8)
-        self.txt_confirma_senha["width"] = 25
+        self.txt_confirma_senha["width"] = 20
         self.txt_confirma_senha["show"] = "*"
         self.txt_confirma_senha["font"] = self.fonte
         self.txt_confirma_senha.pack(side=LEFT)
