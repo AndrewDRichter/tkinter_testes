@@ -54,7 +54,7 @@ class Application:
         self.titulo.pack()
 
         self.lbl_id = Label(self.container2,
-                            text="idUsuario:", font=self.fonte, width=10)
+                            text="id:", font=self.fonte, width=10)
         self.lbl_id.pack(side=LEFT)
 
         self.txt_id = Entry(self.container2)
@@ -74,8 +74,137 @@ class Application:
         self.txt_nome["font"] = self.fonte
         self.txt_nome.pack(side=LEFT)
 
+        self.lbl_telefone = Label(self.container4, text="Telefone:",
+        font=self.fonte, width=10)
+        self.lbl_telefone.pack(side=LEFT)
+
+        self.txt_telefone = Entry(self.container4)
+        self.txt_telefone["width"] = 25
+        self.txt_telefone["font"] = self.fonte
+        self.txt_telefone.pack(side=LEFT)
+
+        self.lbl_email= Label(self.container5, text="E-mail:",
+        font=self.fonte, width=10)
+        self.lbl_email.pack(side=LEFT)
+
+        self.txt_email = Entry(self.container5)
+        self.txt_email["width"] = 25
+        self.txt_email["font"] = self.fonte
+        self.txt_email.pack(side=LEFT)
+
+        self.lbl_usuario= Label(self.container6, text="Usuário:",
+        font=self.fonte, width=10)
+        self.lbl_usuario.pack(side=LEFT)
+
+        self.txt_usuario = Entry(self.container6)
+        self.txt_usuario["width"] = 25
+        self.txt_usuario["font"] = self.fonte
+        self.txt_usuario.pack(side=LEFT)
+
+        self.lbl_senha= Label(self.container7, text="Senha:",
+        font=self.fonte, width=10)
+        self.lbl_senha.pack(side=LEFT)
+
+        self.txt_senha = Entry(self.container7)
+        self.txt_senha["width"] = 25
+        self.txt_senha["show"] = "*"
+        self.txt_senha["font"] = self.fonte
+        self.txt_senha.pack(side=LEFT)
+
+        self.btn_Insert = Button(self.container8, text="Inserir",
+        font=self.fonte, width=12)
+        self.btn_Insert["command"] = self.inserirUsuario
+        self.btn_Insert.pack (side=LEFT)
+
+        self.btn_Alterar = Button(self.container8, text="Alterar",
+        font=self.fonte, width=12)
+        self.btn_Alterar["command"] = self.alterarUsuario
+        self.btn_Alterar.pack (side=LEFT)
+
+        self.btn_Excluir = Button(self.container8, text="Excluir",
+        font=self.fonte, width=12)
+        self.btn_Excluir["command"] = self.excluirUsuario
+        self.btn_Excluir.pack(side=LEFT)
+
+        self.lbl_msg = Label(self.container9, text="")
+        self.lbl_msg["font"] = ("Verdana", "9", "italic")
+        self.lbl_msg.pack()
+
+    def inserirUsuario(self):
+        user = Usuarios()
+
+        user.nome = self.txt_nome.get()
+        user.telefone = self.txt_telefone.get()
+        user.email = self.txt_email.get()
+        user.usuario = self.txt_usuario.get()
+        user.senha = self.txt_senha.get()
+
+        self.lbl_msg["text"] = user.insertUser()
+
+        self.txt_id.delete(0, END)
+        self.txt_nome.delete(0, END)
+        self.txt_telefone.delete(0, END)
+        self.txt_email.delete(0, END)
+        self.txt_usuario.delete(0, END)
+        self.txt_senha.delete(0, END)
+
+    def alterarUsuario(self):
+        user = Usuarios()
+
+        user.id = self.txt_id.get()
+        user.nome = self.txt_nome.get()
+        user.telefone = self.txt_telefone.get()
+        user.email = self.txt_email.get()
+        user.usuario = self.txt_usuario.get()
+        user.senha = self.txt_senha.get()
+
+        self.lbl_msg["text"] = user.updateUser()
+
+        self.txt_id.delete(0, END)
+        self.txt_nome.delete(0, END)
+        self.txt_telefone.delete(0, END)
+        self.txt_email.delete(0, END)
+        self.txt_usuario.delete(0, END)
+        self.txt_senha.delete(0, END)
+
+    def excluirUsuario(self):
+        user = Usuarios()
+
+        user.id = self.txt_id.get()
+
+        self.lbl_msg["text"] = user.deleteUser()
+
+        self.txt_id.delete(0, END)
+        self.txt_nome.delete(0, END)
+        self.txt_telefone.delete(0, END)
+        self.txt_email.delete(0, END)
+        self.txt_usuario.delete(0, END)
+        self.txt_senha.delete(0, END)
+
     def buscarUsuario(self):
-        pass
+        user = Usuarios()
+
+        id = self.txt_id.get()
+
+        self.lbl_msg["text"] = user.selectUser(id)
+
+        self.txt_id.delete(0, END)
+        self.txt_id.insert(INSERT, user.id)
+
+        self.txt_nome.delete(0, END)
+        self.txt_nome.insert(INSERT, user.nome)
+
+        self.txt_telefone.delete(0, END)
+        self.txt_telefone.insert(INSERT,user.telefone)
+
+        self.txt_email.delete(0, END)
+        self.txt_email.insert(INSERT, user.email)
+
+        self.txt_usuario.delete(0, END)
+        self.txt_usuario.insert(INSERT, user.usuario)
+
+        self.txt_senha.delete(0, END)
+        self.txt_senha.insert(INSERT,user.senha)
 
 
 root = Tk()

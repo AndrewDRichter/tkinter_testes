@@ -11,13 +11,13 @@ class Usuarios(object):
         self.senha = senha
 
     def insertUser(self):
+        
         banco = Banco()
         try:
+
             c = banco.conexao.cursor()
             
-            c.execute("""INSERT INTO usuarios (nome, telefone, email, usuario, senha) values(
-                      '%s', '%s', '%s', '%s', '%s')
-            )""")
+            c.execute("INSERT INTO usuarios (nome, telefone, email, usuario, senha) VALUES(?, ?, ?, ?, ?))", (self.nome, self.telefone, self.email, self.usuario, self.senha))
 
             banco.conexao.commit()
             c.close()
@@ -25,3 +25,57 @@ class Usuarios(object):
             return "Usuário cadastrado com sucesso!"
         except:
             return "Ocorreu um erro ao cadastrar o usuário!"
+        
+    def updateUser(self):
+
+        banco = Banco()
+        try:
+
+            c = banco.conexao.cursor()
+
+            c.execute("UPDATE usuarios SET nome = '" + self.nome + "',telefone = '" + self.telefone + "', email = '" + self.email +"', usuario = '" + self.usuario + "', senha = '" + self.senha +"' where id = " + self.id + " ")
+
+            banco.conexao.commit()
+            c.close()
+
+            return "Usuário atualizado com sucesso!"
+        except:
+            return "Ocorreu um erro na alteração do usuário"
+        
+    def deleteUser(self):
+
+        banco = Banco()
+        try:
+
+            c = banco.conexao.cursor()
+
+            c.execute("DELETE FROM usuarios WHERE id = " + self.id + " ")
+
+            banco.conexao.commit()
+            c.close()
+
+            return "Usuário excluído com sucesso!"
+        except:
+            return "Ocorreu um erro na exclusão do usuário"
+        
+    def selectUser(self, id):
+        banco = Banco()
+        try:
+
+            c = banco.conexao.cursor()
+
+            c.execute("SELECT * FROM usuarios WHERE id = " + id + "  ")
+
+            for linha in c:
+                self.id = linha[0]
+                self.nome = linha[1]
+                self.telefone = linha[2]
+                self.email = linha[3]
+                self.usuario = linha[4]
+                self.senha = linha[5]
+
+            c.close()
+
+            return "Busca feita com sucesso!"
+        except:
+            return "Ocorreu um erro na busca do usuário"
