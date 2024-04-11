@@ -247,6 +247,8 @@ class Application:
             self.txt_senha.delete(0, END)
             self.txt_senha.insert(INSERT,user.senha)
             self.txt_confirma_senha.delete(0, END)
+
+            
     def mostrarUsuarios(self):
         pass
 
